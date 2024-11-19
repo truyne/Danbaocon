@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quà tặng đàn báo con</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', serif;
+            background-color: #fdf5d4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .scroll-wrapper {
+            position: relative;
+            background-color: #fff4e6;
+            width: 70%;
+            max-width: 800px;
+            min-width: 300px;
+            border: 4px solid #a0522d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            overflow: auto;
+            max-height: 70vh; /* Cho phép nội dung cuộn nếu quá dài */
+        }
+
+        .scroll-wrapper h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #8b0000;
+            margin-bottom: 20px;
+        }
+
+        .scroll-wrapper p {
+            line-height: 1.8;
+            font-size: 1.2em;
+            text-align: justify;
+        }
+
+        .scroll-wrapper:before, .scroll-wrapper:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 40px;
+            background: #a0522d;
+            border-radius: 10px;
+            top: -10px;
+        }
+
+        .scroll-wrapper:before {
+            left: -10px;
+        }
+
+        .scroll-wrapper:after {
+            right: -10px;
+        }
+
+        .open-scroll-btn {
+            margin-top: 20px;
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .open-scroll-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation for the scroll */
+        @keyframes openScroll {
+            from {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            to {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+        .scroll-wrapper.hidden {
+            transform: scaleY(0);
+            transform-origin: top;
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .scroll-wrapper.visible {
+            animation: openScroll 0.8s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-wrapper hidden" id="scrollWrapper">
+        <h1>LỜI NHẮN NHỦ CỦA 1 THẰNG IT</h1>
+        <p>
+            Các em ơi.
+        </p>
+        <p>
+            Các em được giảng dạy bởi Thầy Phạm Viết Thắng là 1 vinh dự cực kì lớn cho các em luôn, Thầy cực kì dễ thương và cực kì thương học sinh, Các em đừng báo như các anh chị a2 các em nhé .
+        </p>
+        <p>
+            À với lại ai muốn theo IT mà sợ đau lưng với ngồi nhiều thì nghỉ ý định đó đi nhe 
+        </p>
+    </div>
+
+    <button class="open-scroll-btn" id="openScrollBtn">NHẬN LỜI CHÚC</button>
+
+    <script>
+        const scrollWrapper = document.getElementById('scrollWrapper');
+        const openScrollBtn = document.getElementById('openScrollBtn');
+
+        openScrollBtn.addEventListener('click', () => {
+            scrollWrapper.classList.remove('hidden');
+            scrollWrapper.classList.add('visible');
+        });
+
+        function typeText(element, text, delay = 50) {
+            element.innerHTML = ''; // Xóa nội dung hiện tại
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.animationDelay = `${i * delay}ms`;
+                element.appendChild(span);
+            });
+        }
+
+        openScrollBtn.addEventListener('click', () => {
+            scrollWrapper.style.display = 'block';
+            typeText(titleElement, titleElement.textContent, 100);
+            typeText(contentElement, contentElement.textContent, 50);
+        });
+    </script>
+</body>
+</html>
